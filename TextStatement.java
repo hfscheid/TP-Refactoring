@@ -1,22 +1,22 @@
-import java.util.Enumeration;
-
 public class TextStatement extends Statement {
-    public String value(Customer aCustomer){
-		Enumeration rentals = aCustomer.getRentals();
+    public String get_title(Customer aCustomer){
 		String result = "Rental Record for " + aCustomer.getName() +
 		"\n";
-		while (rentals.hasMoreElements()) {
-		   Rental each = (Rental) rentals.nextElement();
-		   //show figures for this rental
-		   result += "\t" + each.getMovie().getTitle()+ "\t" +
-		   String.valueOf(each.getCharge()) + "\n";
-		}
-		//add footer lines
+        return result;
+    }
+
+    public String show_figures(Rental aRental, String result){
+		   result += "\t" + aRental.getMovie().getTitle()+ "\t" +
+		   String.valueOf(aRental.getCharge()) + "\n";
+           return result;
+    }
+
+    public String add_footer(Customer aCustomer, String result){
 		result += "Amount owed is " +
 		String.valueOf(aCustomer.getTotalCharge()) + "\n";
 		result += "You earned " +
 		String.valueOf(aCustomer.getTotalFrequentRenterPoints()) +
 		" frequent renter points";
 		return result;
-   }
+    }
 }
